@@ -1,0 +1,492 @@
+%
+O6683
+
+(BLOQUE DE SEGURIDAD)
+G0 G17 G21 G40 G49 G54 G80 G90 G94 G53 Z0
+
+( G0  = usar movimiento rápido )
+( G17 = establecer plano X-Y para circulos )
+( G21 = establecer las unidades en milimetros )
+( G40 = cancelar desface por radio de herramienta )
+( G49 = cancelar desface por longitud de herramienta )
+( G54 = seleccionar el G54 como cero de pieza )
+( G80 = cancelar cualquier ciclo enlatado )
+( G90 = usar coordenadas absolutas )
+( G94 = usar avance linear por minuto en commandos F )
+( G53 Z0 = mover spindle al cero de maquina )
+
+G15 G52 X0 Y0
+
+( G15 cancelar coordenadas polares )
+( G52 X0 Y0 - cancelar desface de cero de pieza )
+
+( M01 = parada opcional )
+( M03 = prender spindle, con las manillas del reloj )
+( M04 = prender spindle, contra las manillas del reloj )
+( M05 = apagar splinde )
+( M06 = cambio de herramienta )
+( M08 = prender coolant )
+( M09 = apagar coolant )
+( M30 = terminar programa y volver al inicio )
+
+(RECTIFICAR CARA)
+
+(Bloque de Inicializacion)
+T3 M06 (hacer cambio de herramienta)
+S2300 M03 (prender spindle a S rev/min)
+G55 (asignar WCS)
+M08 (prender coolant)
+G00 X108. Y-77.708 (movimiento rapido al X-Y de punto de inicio)
+G43 Z90.5 H03 (aplicar desface de longitud herramienta)
+
+(Bloque de trayectoria)
+G00 Z80.5
+G01 Z80. F600.
+G18 G03 X103. Z75. I-5.
+G01 X75.5
+X-0.5
+G17 G02 Y-50.792 J13.458
+G01 X75.5
+G03 Y-23.875 J13.458
+G01 X-0.5
+G18 G03 X-5.5 Z80. K5.
+G00 Z90.5
+
+(Bloque de recuperacion)
+M05 (apagar spindle)
+M09 (apagar cooland)
+G17 (plano X-Y para circulos)
+G91 G28 X0 Y0 Z100. G90 (regresar a casa)
+G49 (cancelar desface de herramienta)
+G54 (Seleccionar G54 WCS)
+
+
+(INDEXAR CENTRO)
+
+(Bloque de Inicializacion)
+M01
+T4 M06
+S2000 M03
+G55
+M08
+G00 X59. Y-23.
+G43 Z90.5 H04
+
+(Bloque de Trayectoria)
+G00 Z80.5
+G98 G81 X59. Y-23. Z72. R80. F437.
+X13. Y-67.
+G80
+Z90.5
+
+(Bloque de recuperacion)
+M05
+M09
+G17
+G91 G28 X0 Y0 Z100. G90
+G49
+G54
+
+(HUECO 8MM)
+
+(Bloque de Inicializacion)
+M01
+T7 M06
+S1800 M03
+G55
+M08
+G00 X59. Y-23.
+G43 Z90.5 H07
+
+(Bloque de Trayectoria)
+G00 Z80.5
+Z80.
+Z77.
+G01 Z73. F250.
+G00 Z73.16
+G01 Z71. F250.
+G00 Z71.16
+G01 Z69. F250.
+G00 Z69.16
+G01 Z67. F250.
+G00 Z67.16
+G01 Z65. F250.
+G00 Z65.16
+G01 Z63. F250.
+G00 Z63.16
+G01 Z61. F250.
+G00 Z61.16
+G01 Z59. F250.
+G00 Z59.16
+G01 Z57. F250.
+G00 Z57.16
+G01 Z55. F250.
+G00 Z55.16
+G01 Z53. F250.
+G00 Z80.5
+Z55.
+G01 Z51. F250.
+G00 Z51.16
+G01 Z49. F250.
+G00 Z49.16
+G01 Z47. F250.
+G00 Z47.16
+G01 Z45. F250.
+G00 Z45.16
+G01 Z43. F250.
+G00 Z43.16
+G01 Z41. F250.
+G00 Z41.16
+G01 Z39. F250.
+G00 Z39.16
+G01 Z37. F250.
+G00 Z37.16
+G01 Z35. F250.
+G00 Z35.16
+G01 Z34.097 F250.
+G00 Z80.5
+X13. Y-67.
+Z80.
+Z77.
+G01 Z73. F250.
+G00 Z73.16
+G01 Z71. F250.
+G00 Z71.16
+G01 Z69. F250.
+G00 Z69.16
+G01 Z67. F250.
+G00 Z67.16
+G01 Z65. F250.
+G00 Z65.16
+G01 Z63. F250.
+G00 Z63.16
+G01 Z61. F250.
+G00 Z61.16
+G01 Z59. F250.
+G00 Z59.16
+G01 Z57. F250.
+G00 Z57.16
+G01 Z55. F250.
+G00 Z55.16
+G01 Z53. F250.
+G00 Z80.5
+Z55.
+G01 Z52.542 F250.
+G00 Z80.5
+Z90.5
+
+(Bloque de recuperacion)
+M05
+M09
+G17
+G91 G28 X0 Y0 Z100. G90
+G49
+G54
+
+(HUECO 10MM)
+
+(Bloque de Inicializacion)
+M01
+T5 M06
+S1800 M03
+G55
+M08
+G00 X13. Y-67.
+G43 Z90.5 H05
+
+(Bloque de Trayectoria)
+G00 Z80.5
+G73 X13. Y-67. Z52.941 R80. Q2.5 F437.
+G80
+Z90.5
+
+(Bloque de recuperacion)
+M05
+M09
+G17
+G91 G28 X0 Y0 Z100. G90
+G49
+G54
+
+(HUECO 12)
+
+(Bloque de Inicializacion)
+M01
+T10 M06
+S1800 M03
+G55
+M08
+G00 X59. Y-23.
+G43 Z90.5 H10
+
+(Bloque de Trayectoria)
+G00 Z80.5
+Z80.
+Z77.
+G01 Z71.825 F254.
+G00 Z72.079
+G01 Z68.65 F254.
+G00 Z68.904
+G01 Z65.475 F254.
+G00 Z65.729
+G01 Z62.3 F254.
+G00 Z62.554
+G01 Z59.125 F254.
+G00 Z59.379
+G01 Z55.95 F254.
+G00 Z56.204
+G01 Z52.775 F254.
+G00 Z53.029
+G01 Z49.6 F254.
+G00 Z49.854
+G01 Z46.425 F254.
+G00 Z46.679
+G01 Z43.25 F254.
+G00 Z43.504
+G01 Z40.075 F254.
+G00 Z40.329
+G01 Z36.9 F254.
+G00 Z80.5
+Z38.9
+G01 Z33.725 F254.
+G00 Z33.979
+G01 Z33.685 F254.
+G00 Z80.5
+Z90.5
+
+(Bloque de recuperacion)
+M05
+M09
+G17
+G91 G28 X0 Y0 Z100. G90
+G49
+G54
+
+
+(RECTIFICAR HUECO)
+
+(Bloque de Inicializacion)
+M01
+T8 M06
+S2250 M03
+G55
+M08
+G00 X59.95 Y-21.55
+G43 Z90.5 H08
+
+(Bloque de Trayectoria)
+G00 Z77.
+G01 Z76.6 F500.
+G18 G03 X58.35 Z75. I-1.6
+G01 X57.55
+G17 G03 X56.1 Y-23. J-1.45
+X61.9 Z74.5 I2.9
+X56.1 Z74. I-2.9
+X61.9 Z73.5 I2.9
+X56.1 Z73. I-2.9
+X61.9 Z72.5 I2.9
+X56.1 Z72. I-2.9
+X61.9 Z71.5 I2.9
+X56.1 Z71. I-2.9
+X61.9 Z70.5 I2.9
+X56.1 Z70. I-2.9
+X61.9 Z69.5 I2.9
+X56.1 Z69. I-2.9
+X61.9 Z68.5 I2.9
+X56.1 Z68. I-2.9
+X61.9 Z67.5 I2.9
+X56.1 Z67. I-2.9
+X61.9 Z66.5 I2.9
+X56.1 Z66. I-2.9
+X61.9 Z65.5 I2.9
+X56.1 Z65. I-2.9
+X61.9 Z64.5 I2.9
+X56.1 Z64. I-2.9
+X61.9 Z63.5 I2.9
+X56.1 Z63. I-2.9
+X61.9 Z62.5 I2.9
+X56.1 Z62. I-2.9
+X61.9 Z61.5 I2.9
+X56.1 Z61. I-2.9
+X61.9 Z60.5 I2.9
+X56.1 Z60. I-2.9
+X61.9 Z59.5 I2.9
+X56.1 Z59. I-2.9
+X61.9 Z58.5 I2.9
+X56.1 Z58. I-2.9
+X61.9 Z57.5 I2.9
+X56.1 Z57. I-2.9
+X61.9 Z56.5 I2.9
+X56.1 Z56. I-2.9
+X61.9 Z55.5 I2.9
+X56.1 Z55. I-2.9
+X61.9 Z54.5 I2.9
+X56.1 Z54. I-2.9
+X61.9 Z53.5 I2.9
+X56.1 Z53. I-2.9
+X61.9 Z52.5 I2.9
+X56.1 Z52. I-2.9
+X61.9 Z51.5 I2.9
+X56.1 Z51. I-2.9
+X61.9 Z50.5 I2.9
+X56.1 Z50. I-2.9
+X61.9 Z49.5 I2.9
+X56.1 Z49. I-2.9
+X61.9 Z48.5 I2.9
+X56.1 Z48. I-2.9
+X61.9 Z47.5 I2.9
+X56.1 Z47. I-2.9
+X61.9 Z46.5 I2.9
+X56.1 Z46. I-2.9
+X61.9 Z45.5 I2.9
+X56.1 Z45. I-2.9
+X61.9 Z44.5 I2.9
+X56.1 Z44. I-2.9
+X61.9 Z43.5 I2.9
+X56.1 Z43. I-2.9
+X61.9 Z42.5 I2.9
+X56.1 Z42. I-2.9
+X61.9 Z41.5 I2.9
+X56.1 Z41. I-2.9
+X61.9 Z40.5 I2.9
+X56.1 Z40. I-2.9
+X61.9 Z39.5 I2.9
+X56.1 Z39. I-2.9
+X61.9 Z38.5 I2.9
+X56.1 Z38. I-2.9
+X61.9 Z37.5 I2.9
+X56.1 I-2.9
+X61.9 I2.9
+X60.45 Y-21.55 I-1.45
+G01 X59.65
+G18 G03 X58.05 Z39.1 K1.6
+G00 Z90.5
+G17
+
+(RECTIFICAR HUECO FINAL)
+G00 X59.9 Y-21.5
+Z90.5
+Z77.
+G01 Z76.6 F500.
+G18 G03 X58.3 Z75. I-1.6
+G01 X57.5
+G17 G03 X56. Y-23. J-1.5
+X62. Z74.5 I3.
+X56. Z74. I-3.
+X62. Z73.5 I3.
+X56. Z73. I-3.
+X62. Z72.5 I3.
+X56. Z72. I-3.
+X62. Z71.5 I3.
+X56. Z71. I-3.
+X62. Z70.5 I3.
+X56. Z70. I-3.
+X62. Z69.5 I3.
+X56. Z69. I-3.
+X62. Z68.5 I3.
+X56. Z68. I-3.
+X62. Z67.5 I3.
+X56. Z67. I-3.
+X62. Z66.5 I3.
+X56. Z66. I-3.
+X62. Z65.5 I3.
+X56. Z65. I-3.
+X62. Z64.5 I3.
+X56. Z64. I-3.
+X62. Z63.5 I3.
+X56. Z63. I-3.
+X62. Z62.5 I3.
+X56. Z62. I-3.
+X62. Z61.5 I3.
+X56. Z61. I-3.
+X62. Z60.5 I3.
+X56. Z60. I-3.
+X62. Z59.5 I3.
+X56. Z59. I-3.
+X62. Z58.5 I3.
+X56. Z58. I-3.
+X62. Z57.5 I3.
+X56. Z57. I-3.
+X62. Z56.5 I3.
+X56. Z56. I-3.
+X62. Z55.5 I3.
+X56. Z55. I-3.
+X62. Z54.5 I3.
+X56. Z54. I-3.
+X62. Z53.5 I3.
+X56. Z53. I-3.
+X62. Z52.5 I3.
+X56. Z52. I-3.
+X62. Z51.5 I3.
+X56. Z51. I-3.
+X62. Z50.5 I3.
+X56. Z50. I-3.
+X62. Z49.5 I3.
+X56. Z49. I-3.
+X62. Z48.5 I3.
+X56. Z48. I-3.
+X62. Z47.5 I3.
+X56. Z47. I-3.
+X62. Z46.5 I3.
+X56. Z46. I-3.
+X62. Z45.5 I3.
+X56. Z45. I-3.
+X62. Z44.5 I3.
+X56. Z44. I-3.
+X62. Z43.5 I3.
+X56. Z43. I-3.
+X62. Z42.5 I3.
+X56. Z42. I-3.
+X62. Z41.5 I3.
+X56. Z41. I-3.
+X62. Z40.5 I3.
+X56. Z40. I-3.
+X62. Z39.5 I3.
+X56. Z39. I-3.
+X62. Z38.5 I3.
+X56. Z38. I-3.
+X62. Z37.5 I3.
+X56. I-3.
+X62. I3.
+X60.5 Y-21.5 I-1.5
+G01 X59.7
+G18 G03 X58.1 Z39.1 K1.6
+G00 Z90.5
+
+(Bloque de recuperacion)
+M05
+M09
+G17
+G91 G28 X0 Y0 Z100. G90
+G49
+G54
+
+(ROSCA 12MM)
+
+(Bloque de Inicializacion)
+M01
+T6 M06
+S500 M03
+G55
+M08
+G00 X13. Y-67.
+G43 Z90.5 H06
+
+(Bloque de Trayectoria)
+G00 Z80.5
+G95 M29 S500
+G84 X13. Y-67. Z56.945 R80. P0 F1.75
+G80
+G94
+Z90.5
+
+(Bloque de recuperacion)
+M05
+M09
+G17
+G91 G28 X0 Y0 Z100. G90
+G49
+G54
+M30
+%
+
